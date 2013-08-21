@@ -133,6 +133,10 @@ class Article < Content
 
     self.body += other_article.body
     Article.find_by_id(other_article_id).delete
+    other_article_id.comments.each do |comment|
+      comment.article_id = self.id
+      self.comments << comment
+    end
     self.save
     true
   end

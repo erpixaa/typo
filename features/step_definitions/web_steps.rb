@@ -74,11 +74,17 @@ And /^I am logged as no admin$/ do
   end
 end
 
+#Solves problem of not knowing the id
+And /^I enter the ID of "(.*?)" into the merge field$/ do |article_name|
+  fill_in(:merge_with, :with => Article.find_by_title(article_name).id)
+end
+
 #Background for the articles needed to test
 Given /the following articles exist/ do |articles|
-  articles.hashes.each { |artic|
-    Article.create! artic
-  }
+  articles.hashes.each do |article|
+    query = Article.create! article
+    query.save!
+  end
 end
 
 # Single-line step scoper

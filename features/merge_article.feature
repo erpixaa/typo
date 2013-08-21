@@ -26,7 +26,7 @@ Scenario: Merged Article should contain one author
   Given I am on the edit article page for "Hello World!"
   And I am logged into the admin panel
   Then I should see "Merge Articles"
-  And I fill in "merge_id" with "2"
+  And I fill in "merge_id" with "5"
   And I press "Merge"
   Then I should see "admin"
 
@@ -34,15 +34,16 @@ Scenario: Merged Article should have one title
   Given I am on the edit article page for "Hello World!"
   And I am logged into the admin panel
   Then I should see "Merge Articles"
-  And I fill in "merge_id" with "2"
+  And I fill in "merge_id" with "5"
   And I press "Merge"
+  Then show me the page
   Then I should see "Hello World!"
 
 Scenario: Merged Article should have both texts
   Given I am on the edit article page for "Hello World!"
   And I am logged into the admin panel
   Then I should see "Merge Articles"
-  And I fill in "merge_id" with "2"
+  And I fill in "merge_id" with "5"
   And I press "Merge"
   Then I should see "Welcome to Typo. This is your first article. Edit or delete it, then start blogging!"
   And I should see "my first public content"

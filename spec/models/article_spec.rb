@@ -621,15 +621,13 @@ describe Article do
 
     context "when admin is logged in" do
       it "should include both texts" do
-        #Article.should_receive(:merge_with).with(@article1).and_return(@article1)
-        #Article.stub(:merge_with).with(Article).and_return(@article1)
-        @article1.merge_with(@article2)
+        @article1.merge_with(@article2.id)
         @article1.body.should include @article1.body
         @article1.body.should include @article2.body
       end
 
       it "should have one author" do
-        @article1.merge_with(@article2)
+        @article1.merge_with(@article2.id)
         @article1.author.should == @article1.author
       end
     end

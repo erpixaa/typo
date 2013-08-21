@@ -82,7 +82,7 @@ end
 #Background for the articles needed to test
 Given /the following articles exist/ do |articles|
   articles.hashes.each do |article|
-    query = Article.create! article
+    query = Article.create article
     query.save!
   end
 end

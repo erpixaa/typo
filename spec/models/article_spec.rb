@@ -630,6 +630,12 @@ describe Article do
         @article1.merge_with(@article2.id)
         @article1.author.should == @article1.author
       end
+
+      it "should have own the comments" do
+        @article1.merge_with(@article2.id)
+        @article1.comments.should include @article1.comments
+        @article1.comments.should include @article2.comments
+      end
     end
   end
 

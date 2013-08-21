@@ -132,7 +132,7 @@ class Article < Content
     end
 
     self.body += other_article.body
-    Article.find(other_article_id).delete
+    Article.find_by_id(other_article_id).delete
     self.save
     true
   end

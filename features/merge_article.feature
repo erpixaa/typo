@@ -7,7 +7,7 @@ Background: articles have been added to database
   Given the blog is set up
   Given the following articles exist:
     | title     | author |         body           | published | id |
-    | Hey World | public | my first public content| day       | 2  |
+    | Hey World | public | my first public content| day       | 5  |
 
 Scenario: Non admin cannot merge articles
   Given I am logged as no admin
@@ -26,7 +26,7 @@ Scenario: Merged Article should contain one author
   Given I am on the edit article page for "Hello World!"
   And I am logged into the admin panel
   Then I should see "Merge Articles"
-  And I fill in "merge_with" with "4"
+  And I fill in "merge_with" with "5"
   And I press "Merge"
   Then I should be on the admin content page
   When I follow "Hello World!"
@@ -36,7 +36,7 @@ Scenario: Merged Article should have one title
   Given I am on the edit article page for "Hello World!"
   And I am logged into the admin panel
   Then I should see "Merge Articles"
-  And I fill in "merge_with" with "4"
+  And I fill in "merge_with" with "5"
   And I press "Merge"
   Then I should be on the admin content page
   When I follow "Hello World!"
@@ -47,7 +47,7 @@ Scenario: Merged Article should have both texts
   Given I am on the edit article page for "Hello World!"
   And I am logged into the admin panel
   Then I should see "Merge Articles"
-  And I fill in "merge_with" with "4"
+  And I fill in "merge_with" with "5"
   And I press "Merge"
   Then I should be on the admin content page
   When I follow "Hello World!"

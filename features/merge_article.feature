@@ -49,6 +49,7 @@ Scenario: Merged Article should have both texts
   And I enter the ID of "second" into the merge field
   And I press "Merge"
   Then I should be on the admin content page
+  Then show me the page
   When I follow "first"
   Then I should see "the first blog"
   Then show me the page

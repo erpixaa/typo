@@ -55,7 +55,8 @@ class Admin::ContentController < Admin::BaseController
   def merge_articles
     current_article = Article.find(params[:id])
     current_article.merge_with(params[:merge_id]) ? flash[:notice] = _("Successfully merged") : flash[:notice]= _("Not a valid Article ID")
-    redirect_to "/admin/content/edit/#{params[:id]}#"
+    #redirect_to "/admin/content/edit/#{params[:id]}#"
+    redirect_to "/admin/content"
   end
 
   def insert_editor

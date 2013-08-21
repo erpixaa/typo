@@ -122,6 +122,20 @@ class Article < Content
 
   end
 
+  # merge self article with another article
+  # given article_id => return Boolean
+  def merge_with(other_article_id)
+    if Article.exists?(other_article_id)
+      other_article = Article.find(other_article_id)
+    else
+      return false
+    end
+
+    self.body += other_article.body
+    self.save
+    true
+  end
+
   def year_url
     published_at.year.to_s
   end

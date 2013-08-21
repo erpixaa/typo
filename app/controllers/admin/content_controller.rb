@@ -52,6 +52,12 @@ class Admin::ContentController < Admin::BaseController
     redirect_to :action => 'index'
   end
 
+  def merge_articles
+    current_article = Article.find(params[:id])
+    current_article.merge_with(params[:merge_id]) ? flash[:notice] = _("Successfully merged") : flash[:notice]= _("Not a valid Article ID")
+    redirect_to("/admin/content")
+  end
+
   def insert_editor
     editor = 'visual'
     editor = 'simple' if params[:editor].to_s == 'simple'

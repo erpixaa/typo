@@ -598,6 +598,43 @@ describe Article do
     end
   end
 
+  describe "#merge_with" do
+
+    before :each do
+      @admin = Factory.build(:user, :profile => Factory.build(:profile_admin, :label => Profile::ADMIN)) 
+      @public = Factory.build(:user, :profile => Factory.build(:profile)) 
+
+      @article1 = Factory.create(:article, :title => "Alien", :body => "Hey I'm body",
+       :user => @admin)
+      @article2 = Factory.create(:article, :title => "Hey World", :body => "my first public content",
+       :user => @public)
+
+      @article1.save
+      @article2.save
+    end
+
+    context "when no admin is logged in" do
+      it "should not allow to merge" do
+         pending "This test is pending till I know how to assure log"
+      end
+    end
+
+    context "when admin is logged in" do
+      it "should include both texts" do
+        #Article.should_receive(:merge_with).with(@article1).and_return(@article1)
+        #Article.stub(:merge_with).with(Article).and_return(@article1)
+        @article1.merge_with(@article2)
+        @article1.body.should include @article1.body
+        @article1.body.should include @article2.body
+      end
+
+      it "should have one author" do
+        @article1.merge_with(@article2)
+        @article1.author.should == @article1.author
+      end
+    end
+  end
+
   describe "#get_or_build" do
     context "when no params given" do
       before(:each) do

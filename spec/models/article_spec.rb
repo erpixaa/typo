@@ -611,6 +611,9 @@ describe Article do
 
       @article1.save
       @article2.save
+
+      @comment1 = Factory(:comment, :article => @article1)
+      @comment2 = Factory(:comment, :article => @article2)
     end
 
     context "when no admin is logged in" do
@@ -633,8 +636,12 @@ describe Article do
 
       it "should have own the comments" do
         @article1.merge_with(@article2.id)
-        @article1.comments.should include @article1.comments
-        @article1.comments.should include @article2.comments
+        @article1.comments.should include @comment2
+      end
+
+      it "should destroy the other merged article" do
+        @article1.merge_with(@article2.id)
+        expect(Article.find_by_id(@article2.id)).to be_nil
       end
     end
   end
